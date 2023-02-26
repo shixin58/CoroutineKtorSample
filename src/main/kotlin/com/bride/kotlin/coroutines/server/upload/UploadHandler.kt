@@ -2,12 +2,11 @@ package com.bride.kotlin.coroutines.server.upload
 
 import com.bride.kotlin.coroutines.server.Context
 import com.bride.kotlin.coroutines.server.utils.md5
-import io.ktor.application.*
 import io.ktor.http.content.*
-import io.ktor.request.*
-import io.ktor.response.*
-import io.ktor.routing.Route
-import io.ktor.routing.post
+import io.ktor.server.application.*
+import io.ktor.server.request.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
 import java.io.File
 
@@ -38,6 +37,7 @@ fun Route.upload() {
                 }
                 is PartData.FormItem -> {}
                 is PartData.BinaryItem -> {}
+                is PartData.BinaryChannelItem -> {}
             }
             part.dispose()
         }
